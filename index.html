@@ -74,6 +74,74 @@
     z-index: 0;
   }
 
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: rgba(0,212,255,0.35); box-shadow: var(--glow); }
+  .project-card:hover::before { opacity: 1; }
+  .project-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; color: var(--accent);
+    margin-bottom: 1rem; opacity: 0.7;
+  }
+  .project-title {
+    font-size: 18px; font-weight: 700; letter-spacing: -0.5px;
+    margin-bottom: 0.75rem; line-height: 1.3;
+  }
+  .project-desc {
+    font-size: 14px; color: var(--muted); line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .project-chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 1.5rem;
+  }
+  .project-chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 1px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .project-card:hover .project-chip { border-color: rgba(0,212,255,0.25); color: var(--text); }
+  .project-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--accent); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: gap 0.2s;
+  }
+  .project-link::after { content: '→'; }
+  .project-link:hover { gap: 12px; }
+
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
@@ -514,6 +582,7 @@
   <div class="nav-logo">NSJ.DEV</div>
   <div class="nav-links">
     <a href="#about">About</a>
+    <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
     <a href="#education">Education</a>
@@ -602,8 +671,81 @@
   </div>
 </section>
 
-<section id="experience" style="max-width:1100px;">
+<section id="projects" style="max-width:1100px;">
   <div class="section-label">002</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">PROJECT // 01</div>
+      <div class="project-title">Tron Wallet Tracker Bot</div>
+      <div class="project-desc">Real-time TRC20 (USDT) transaction monitoring via TronScan API. Sends instant Telegram alerts for incoming/outgoing transactions, deduplicates entries, and logs everything to Google Sheets — fully automated.</div>
+      <div class="project-chips">
+        <span class="project-chip">n8n</span>
+        <span class="project-chip">TronScan API</span>
+        <span class="project-chip">Telegram</span>
+        <span class="project-chip">Google Sheets</span>
+      </div>
+      <a href="https://github.com/nihal1526/Tron-Wallet-Tracker-n8n-TRC20-Transaction-Monitor" target="_blank" class="project-link">VIEW ON GITHUB</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT // 02</div>
+      <div class="project-title">WhatsApp AI Auto-Reply Bot</div>
+      <div class="project-desc">AI-powered WhatsApp chatbot that receives messages via webhook, processes them through Google Gemini, and sends intelligent contextual replies via Evolution API — with memory-based conversation context and custom knowledge base support.</div>
+      <div class="project-chips">
+        <span class="project-chip">n8n</span>
+        <span class="project-chip">Google Gemini</span>
+        <span class="project-chip">WhatsApp</span>
+        <span class="project-chip">Evolution API</span>
+      </div>
+      <a href="https://github.com/nihal1526/WhatsApp-AI-Auto-Reply-Bot-n8n-Gemini-Evolution-API-" target="_blank" class="project-link">VIEW ON GITHUB</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT // 03</div>
+      <div class="project-title">AI Webchat Assistant</div>
+      <div class="project-desc">Domain-restricted AI assistant for websites that uses Tavily search to retrieve only verified, real-time data from your own domain — eliminating hallucinations and ensuring trustworthy responses for every user query.</div>
+      <div class="project-chips">
+        <span class="project-chip">n8n</span>
+        <span class="project-chip">Gemini AI</span>
+        <span class="project-chip">Tavily Search</span>
+        <span class="project-chip">Webchat</span>
+      </div>
+      <a href="https://github.com/nihal1526/AI-Webchat-Assistant-n8n-Website-Verified-Chatbot" target="_blank" class="project-link">VIEW ON GITHUB</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT // 04</div>
+      <div class="project-title">Messenger AI Lead Bot</div>
+      <div class="project-desc">Turns Facebook Messenger into an automated lead generation machine. The AI chatbot engages users naturally, collects and validates contact details, and stores everything directly into Google Sheets — no manual work required.</div>
+      <div class="project-chips">
+        <span class="project-chip">n8n</span>
+        <span class="project-chip">OpenAI</span>
+        <span class="project-chip">Facebook Messenger</span>
+        <span class="project-chip">Google Sheets</span>
+      </div>
+      <a href="https://github.com/nihal1526/Messenger-Automation" target="_blank" class="project-link">VIEW ON GITHUB</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT // 05</div>
+      <div class="project-title">Universal PDF Reader & AI Extractor</div>
+      <div class="project-desc">Send any PDF to a Telegram bot and get back structured JSON. Supports bank statements, invoices, receipts, reports, and forms — AI extracts the relevant data and forwards it to any API endpoint automatically.</div>
+      <div class="project-chips">
+        <span class="project-chip">n8n</span>
+        <span class="project-chip">Telegram Bot</span>
+        <span class="project-chip">AI Extraction</span>
+        <span class="project-chip">JSON / REST API</span>
+      </div>
+      <a href="https://github.com/nihal1526/PDF-Reader" target="_blank" class="project-link">VIEW ON GITHUB</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience" style="max-width:1100px;">
+  <div class="section-label">003</div>
   <h2 class="section-title">Experience</h2>
   <div class="exp-timeline">
     <div class="exp-item">
@@ -622,7 +764,7 @@
 </section>
 
 <section id="skills" style="max-width:1100px;">
-  <div class="section-label">003</div>
+  <div class="section-label">004</div>
   <h2 class="section-title">Tech Stack</h2>
   <div class="skills-grid">
     <div class="skill-category">
@@ -684,7 +826,7 @@
 </section>
 
 <section id="education" style="max-width:1100px;">
-  <div class="section-label">004</div>
+  <div class="section-label">005</div>
   <h2 class="section-title">Education & Certs</h2>
   <div class="edu-certs-grid">
     <div>
@@ -740,7 +882,7 @@
 </section>
 
 <section id="contact" style="max-width:1100px; padding-bottom:4rem;">
-  <div class="section-label">005</div>
+  <div class="section-label">006</div>
   <h2 class="section-title">Let's Build<br>Something.</h2>
   <p style="color:var(--muted); font-size:16px; max-width:500px; margin:0 auto 1rem; line-height:1.7;">Ready to automate your workflows, deploy AI chatbots, or integrate your systems? Let's talk.</p>
   <a href="mailto:nihalsjain152002@gmail.com" class="contact-email">nihalsjain152002@gmail.com</a>
@@ -807,7 +949,7 @@
     });
   }, { threshold: 0.15 });
 
-  document.querySelectorAll('.exp-item, .edu-item, .cert-item, .skill-category').forEach(el => observer.observe(el));
+  document.querySelectorAll('.exp-item, .edu-item, .cert-item, .skill-category, .project-card').forEach(el => observer.observe(el));
 
   // Trigger skill bars when about section visible
   const aboutObs = new IntersectionObserver(entries => {
